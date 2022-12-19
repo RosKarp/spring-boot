@@ -1,20 +1,31 @@
 package ru.gb.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "products")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
 
-    private long id;
+    @Column(name = "title")
     private String title;
-    private float cost;
 
-    public Product(long id, String title, float cost) {
-        this.id = id;
+    @Column(name = "price")
+    private Integer price;
+
+    public Product(String title, Integer price) {
         this.title = title;
-        this.cost = cost;
+        this.price = price;
     }
+    public Product() {  }
+
     public Long getId() {
         return id;
     }
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -25,15 +36,15 @@ public class Product {
         this.title = title;
     }
 
-    public float getCost() {
-        return cost;
+    public Integer getprice() {
+        return price;
     }
-    public void setCost(float cost) {
-        this.cost = cost;
+    public void setprice(Integer price) {
+        this.price = price;
     }
 
     @Override
     public String toString() {
-        return "id = " + id + "   "+ title + "   cost = " + cost;
+        return "id = " + id + "   "+ title + "   price = " + price;
     }
 }

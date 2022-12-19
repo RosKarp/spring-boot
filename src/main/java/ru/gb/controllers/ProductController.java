@@ -20,13 +20,13 @@ public class ProductController {
 
     @GetMapping("/all")                         // весь список через html
     public String allProducts(Model model) {
-        model.addAttribute("allProducts", productService.getAllProducts());
+        model.addAttribute("allProducts", productService.findAll());
         return "Products_page";
     }
     @GetMapping("/allJSON")         // весь список через JSON
     @ResponseBody
     public List<Product> allProductsJSON() {
-        return productService.getAllProducts();
+        return productService.findAll();
     }
 
     @GetMapping("/addProduct")                  // вывод формы для добавления
@@ -35,15 +35,15 @@ public class ProductController {
     }
 
     @GetMapping("/addOneProduct")       // добавление продукта в репозиторий
-    public String addProduct(@RequestParam Long id, @RequestParam String title, @RequestParam Float cost) {
-        Product product = new Product(id,title, cost);
-        productService.add(product);
+    public String addProduct(@RequestParam String title, @RequestParam Integer price) {
+        Product product = new Product(title, price);
+        productService.saveOrUpdate(product);
         return "redirect:/products/all";
     }
     @GetMapping("/id/{id}")             // получение продукта по id
     @ResponseBody
     public String getProductById(@PathVariable Long id) {
-    return productService.findOneProduct(id);
+    return productService.findById(id).toString();
     }
 
     @GetMapping("/delete/{id}")         // удаление продукта из репозитория

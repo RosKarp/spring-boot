@@ -16,14 +16,14 @@
         <tr>
             <td>id</td>
             <td>Title</td>
-            <td>Cost</td>
+            <td>Price</td>
             <td>Action</td>
         </tr>
         <tbody>
         <tr ng-repeat="product in products">
             <td>{{product.id}}</td>
             <td>{{product.title}}</td>
-            <td>{{product.cost}}</td>
+            <td>{{product.price}}</td>
             <td>
                 <button class="btn btn-danger" ng-click="deleteProduct(product.id)">Delete</button>
             </td>
